@@ -1,5 +1,9 @@
 <div class="center jumbotron">
   <div class="text-center">
-    <h1>Welcome to the Microposts</h1>
+    <ul>
+    <% @categories.each do |c| %>
+      <li><%= link_to c.name, topics_path %></li>
+    <% end %>
+    </ul>
   </div>
 </div>

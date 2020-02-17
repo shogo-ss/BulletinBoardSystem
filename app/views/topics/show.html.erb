@@ -1,0 +1,20 @@
+<div class="text-center">
+  <h3><%= @topic.name %></h3>
+  <% if current_user == @topic.user %>
+  <%= link_to "編集する", edit_topic_path(@topic) %>
+  <%= link_to "削除する", @topic, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>
+  <% end %>
+  <%= link_to "comment", new_comment_path(topic_id: @topic.id) %>
+  
+  <ul>
+  <% @topic.comments.each do |c| %>
+    <li>
+  <%= c.comment %>
+  <% if current_user == c.user %>
+  <%= link_to "編集する", edit_comment_path(c.id) %>
+  <%= link_to "削除する", c, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>
+  <% end %>
+    </li>
+  <% end %>
+</ul>
+</div>

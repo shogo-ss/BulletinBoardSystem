@@ -1,0 +1,12 @@
+      <%= f.fields_for :category_topics do |c| %>
+      <div class="form-group">
+      <%= c.collection_check_boxes :category_id, Category.all, :id, :name, include_hidden: false %>
+      </div>
+      <% end %>
+      
+      <div class="form-group">
+      <% Category.all.each do |category| %>
+  　　<%= check_box_tag "topic[category_ids][]", category.id, @topic.categories.include?(category), id: "topic_category_ids_#{category.id}" %>
+  　　<%= label_tag "topic[category_ids][#{category.id}]", category.name %>
+　　　<% end %>
+　　　</div>
