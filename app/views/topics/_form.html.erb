@@ -15,7 +15,7 @@
       <%= f.collection_select :category_id, Category.all, :id, :name, {prompt: "カテゴリを選択してください"}, include_hidden: false %>
       </div>
       
-      <%= f.submit '作成', class: 'btn btn-primary btn-block' %>
+      <%= f.submit '作成', class: 'btn btn-primary' %>
     <% end %>
   </div>
 </div>
