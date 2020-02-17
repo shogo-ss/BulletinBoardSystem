@@ -1,20 +1,36 @@
+<div class="container">
 <div class="text-center">
-  <h3><%= @topic.name %></h3>
+<div class="center jumbotron">
+  <h3 style="word-break: keep-all"><%= @topic.category.name %></h3>
+  <h3 style="word-break: keep-all"><%= @topic.name %></h3>
   <% if current_user == @topic.user %>
   <%= link_to "編集する", edit_topic_path(@topic) %>
   <%= link_to "削除する", @topic, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>
   <% end %>
-  <%= link_to "comment", new_comment_path(topic_id: @topic.id) %>
+  <h3><%= link_to "comment", new_comment_path(topic_id: @topic.id) %></h3>
   
-  <ul>
-  <% @topic.comments.each do |c| %>
-    <li>
-  <%= c.comment %>
-  <% if current_user == c.user %>
-  <%= link_to "編集する", edit_comment_path(c.id) %>
-  <%= link_to "削除する", c, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>
+  <% @comments.each do |c| %>
+  <div class="card">
+    <div class="card-body">
+      <ul class="nav">
+        <li><h6 class="card-title"><%= c.user.name %></h5></li>
+        <li>
+          <% if current_user == c.user %>
+          <%= link_to "編集する", edit_comment_path(c.id) %>
+          <%= link_to "削除する", c, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>
+          <% end %>
+        </li>
+      </ul>
+      <div class="text-left">
+      <p class="card-text" style="word-break: keep-all"><%= simple_format(c.comment) %></p>
+      <%= c.updated_at %>
+      </div>
+    </div>
+  </div>
   <% end %>
-    </li>
+  <% if @comments.present? %>
+  <h3><%= link_to "comment", new_comment_path(topic_id: @topic.id) %></h3>
   <% end %>
-</ul>
+</div>
+</div>
 </div>

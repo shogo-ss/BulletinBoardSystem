@@ -10,3 +10,17 @@
   　　<%= label_tag "topic[category_ids][#{category.id}]", category.name %>
 　　　<% end %>
 　　　</div>
+　　　
+　　　<%= link_to topic.name, topic_path(topic) %>
+　　　
+　　　<table class="table table-hover">
+      <tbody>
+        <% @topics.each do |topic| %>
+        <tr data-href="<%= topic_path(topic) %>">
+          <td>
+        <%= link_to topic.name, topic_path(topic) %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>

@@ -1,9 +1,11 @@
+<div class="container">
+<div class="text-center">
 <div class="center jumbotron">
-  <div class="text-center">
-    <ul>
-    <% @categories.each do |c| %>
-      <li><%= link_to c.name, topics_path %></li>
-    <% end %>
-    </ul>
-  </div>
+      <ul class="navbar-nav">
+        <% @categories.each do |c| %>
+        <li class="btn btn-light"><%= link_to c.name, topics_path(category_id: c.id), class:"nav-link" %></li>
+        <% end %>
+      </ul>
+</div>
+</div>
 </div>

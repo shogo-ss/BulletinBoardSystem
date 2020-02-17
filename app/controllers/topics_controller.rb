@@ -2,7 +2,8 @@ class TopicsController < ApplicationController
   before_action :require_user_logged_in, except: [:index, :show]
   
   def index
-    @topics = Topic.all
+    @topics = Topic.where(category_id: params[:category_id]).order(id: :desc).page(params[:page]).per(20)
+    @category = Category.find(params[:category_id])
   end
   
   def new
@@ -27,6 +28,7 @@ class TopicsController < ApplicationController
   
   def show
     @topic = Topic.find(params[:id])
+    @comments = @topic.comments.order(id: :asc).page(params[:page]).per(50)
   end
   
   def edit
@@ -47,6 +49,7 @@ class TopicsController < ApplicationController
       
     else
       flash.now[:danger] = 'トピックの編集に失敗しました。'
+      @user = current_user
       render :edit
     end
   end

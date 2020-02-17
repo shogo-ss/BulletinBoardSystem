@@ -1,5 +1,9 @@
-<ul>
-  <% @topics.each do |topic| %>
-  <li><%= link_to topic.name, topic_path(topic) %></li>
-  <% end %>
-</ul>
+<div class="container">
+  <div class="center jumbotron">
+    <h3 class="text-center"><%= @category.name %></h3>
+        <% @topics.each do |topic| %>
+          <%= link_to topic.name, topic_path(topic), class:"btn btn-light btn-lg btn-block text-left"%>
+          <%= topic.updated_at %>
+        <% end %>
+  </div>
+</div>
