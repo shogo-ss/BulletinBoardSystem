@@ -61,6 +61,12 @@ class TopicsController < ApplicationController
     redirect_to root_url
   end
   
+  def search
+    #Viewのformで取得したパラメータをモデルに渡す
+    @topics = Topic.topic_search(params[:search]).order(id: :desc).page(params[:page]).per(50)
+    @comments  = Comment.comment_search(params[:search]).order(id: :desc).page(params[:page]).per(50)
+  end
+  
   private
 
   def topic_params

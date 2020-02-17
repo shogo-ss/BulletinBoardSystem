@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="center jumbotron">
+    <h2>トピック</h2>
+      <% @topics.each do |topic| %>
+      <h6><%= topic.category.name %></h>
+      <%= link_to topic.name, topic_path(topic), class:"btn btn-light btn-lg btn-block text-left"%>
+      <%= topic.updated_at %>
+      <% end %>
+    <h2>コメント</h2>
+      <% @comments.each do |c| %>
+      <h6><%= c.topic.category.name %></h>
+      <%= link_to c.comment, topic_path(c.topic), class:"btn btn-light btn-lg btn-block text-left"%>
+      <%= c.updated_at %>
+      <% end %>
+  </div>
+</div>
