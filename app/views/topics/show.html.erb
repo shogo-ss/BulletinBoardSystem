@@ -13,7 +13,7 @@
   <div class="card">
     <div class="card-body">
       <ul class="nav">
-        <li><h6 class="card-title"><%= c.user.name %></h5></li>
+        <li><h6 class="card-title"><%= c.user.name %></h6></li>
         <li>
           <% if current_user == c.user %>
           <%= link_to "編集する", edit_comment_path(c.id) %>
@@ -22,7 +22,7 @@
         </li>
       </ul>
       <div class="text-left">
-      <p class="card-text" style="word-break: keep-all"><%= simple_format(c.comment) %></p>
+      <p class="card-text" style="word-break: keep-all"><%= simple_format(c.comment) %>
       <%= c.updated_at %>
       </div>
     </div>
